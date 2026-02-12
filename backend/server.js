@@ -20,7 +20,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
     cors: {
-        origin: "https://blog-26.vercel.app/", 
+        origin: "https://blog-26.vercel.app", 
         methods: ["GET", "POST"]
     }
 })
