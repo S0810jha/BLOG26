@@ -93,6 +93,9 @@ const AdminContextProvider = ({ children }) => {
             const { data } = await axios.post(backendUrl + "/api/admin/update-blog", formData, config)
             if (data.success) {
                 toast.success(data.message)
+                setAdminBlogs(prev => prev.map(blog => 
+                    blog._id === data.blog._id ? data.blog : blog
+                ))
                 return true
             }
         } catch (error) {
