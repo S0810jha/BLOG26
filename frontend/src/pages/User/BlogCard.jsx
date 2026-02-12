@@ -95,7 +95,7 @@ const UserBlogDetail = () => {
         <div className="flex flex-col lg:flex-row h-auto lg:h-screen w-full lg:overflow-hidden bg-white">
             <style>{`.no-scrollbar::-webkit-scrollbar { display: none; }`}</style>
 
-            {/* ================= LEFT SIDE: CONTENT ================= */}
+            {/* ================= LEFT SIDE ================= */}
             <div className="flex-1 h-auto lg:h-full overflow-y-auto no-scrollbar p-6 md:p-10 lg:p-16">
                 <div className="max-w-3xl mx-auto">
                     <button 
@@ -132,7 +132,7 @@ const UserBlogDetail = () => {
                             </div>
                         </div>
 
-                        {/* STATS WITH LIKE TOGGLE */}
+                        {/* LIKE TOGGLE */}
                         <div className="flex items-center gap-8 bg-zinc-50/50 p-4 rounded-3xl border border-zinc-100">
                             <Stat icon={<Eye size={20}/>} value={blog.viewsCount} label="Reads" />
                             
@@ -177,7 +177,7 @@ const UserBlogDetail = () => {
             </div>
             
 
-            {/* ================= RIGHT SIDE: DISCUSSIONS ================= */}
+            {/* ================= RIGHT SIDE ================= */}
             <div className="w-full lg:w-[450px] h-[600px] lg:h-full bg-zinc-50 border-t lg:border-t-0 lg:border-l border-zinc-200 flex flex-col shrink-0">
                 <div className="p-8 bg-white border-b border-zinc-100">
                     <h3 className="text-xl font-black text-zinc-900 uppercase tracking-tighter flex items-center gap-3">
@@ -205,7 +205,7 @@ const UserBlogDetail = () => {
                                                         {new Date(comment.createdAt).toLocaleDateString()}
                                                     </span>
                                                     
-                                                    {/* DELETE ICON: Only show if it's the user's own comment */}
+                                                    {/* DELETE ICON */}
                                                     {userData?._id === comment.userId && (
                                                         <button 
                                                             onClick={() => handleDeleteComment(comment._id)}

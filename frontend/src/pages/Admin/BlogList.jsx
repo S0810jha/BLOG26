@@ -79,7 +79,7 @@ const BlogList = () => {
   return (
     <div className="pt-20 md:pt-5 px-5 max-w-7xl mx-auto animate-in fade-in duration-700 pb-20">
       
-      {/* Header Section (Unchanged) */}
+      {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
         <div>
           <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-zinc-900 uppercase">
@@ -115,7 +115,7 @@ const BlogList = () => {
         </div>
       </div>
 
-      {/* Filter & Search Bar Area (Unchanged) */}
+      {/* Filter & Search Bar Area */}
       <div className="flex flex-col lg:flex-row gap-4 mb-12 items-center">
         <div className="relative w-full lg:w-96 group">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-indigo-600 transition-colors" size={16} />
@@ -205,7 +205,7 @@ const BlogList = () => {
             ))}
           </div>
 
-          {/* INFINITE SCROLL TRIGGER AREA */}
+          {/* INFINITE SCROLL */}
           <div ref={observerTarget} className="w-full flex flex-col items-center justify-center mt-12 py-10">
             {loading && (
               <div className="flex items-center gap-3 text-indigo-600 font-black text-[10px] uppercase tracking-widest">

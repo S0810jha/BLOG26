@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react'
 import { AdminContext } from '../../context/AdminContext.jsx'
 import axios from 'axios'
 import { Eye, EyeOff } from 'lucide-react'
-import { toast } from 'react-toastify' // Import toast to match your Context behavior
+import { toast } from 'react-toastify'
 
 const AdminLogin = () => {
 
@@ -10,23 +10,22 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   
-  // Updated variable name to setAToken to match your AdminContextProvider
   const { setAToken, backendUrl } = useContext(AdminContext)
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(backendUrl + '/api/admin/login', { email, password });
+      const { data } = await axios.post(backendUrl + '/api/admin/login', { email, password })
       
       if (data.success) {
         localStorage.setItem('aToken', data.token)
-        setAToken(data.token); // Updated from setAtoken to setAToken
+        setAToken(data.token)
         toast.success("Login Successful")
       } else {
         toast.error(data.message)
       }
+
     } catch (error) {
-      // Improved error logging
       toast.error(error.response?.data?.message || error.message)
       console.log(error.message)
     }

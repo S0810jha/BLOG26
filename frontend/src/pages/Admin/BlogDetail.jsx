@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { AdminContext } from '../../context/AdminContext.jsx'
 import { Eye, Heart, MessageSquare, Trash2, ArrowLeft, Calendar, User, AlertCircle } from 'lucide-react'
 
-// Define the Stat helper component
+
 const Stat = ({ icon, value, label }) => (
     <div className="flex flex-col items-center">
         <div className="flex items-center gap-1.5 text-zinc-800">
@@ -13,6 +13,7 @@ const Stat = ({ icon, value, label }) => (
         <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">{label}</span>
     </div>
 )
+
 
 const BlogDetail = () => {
     const { blogId } = useParams()
@@ -24,13 +25,16 @@ const BlogDetail = () => {
     }, [adminBlogs, blogId])
 
     useEffect(() => {
-        // Fix: Fetch if blog is missing OR if we have the blog but comments haven't been loaded yet
         if (!blog || !blog.comments) {
             getBlogById(blogId)
         }
     }, [blogId, blog, getBlogById])
 
-    if (!blog) return <div className="flex h-screen items-center justify-center text-zinc-400 font-medium tracking-widest animate-pulse">LOADING LIVE DATA...</div>;
+    if (!blog){
+        return(
+            <div className="flex h-screen items-center justify-center text-zinc-400 font-medium tracking-widest animate-pulse">LOADING LIVE DATA...</div>
+        ) 
+    } 
 
     return (
         <>
@@ -46,7 +50,7 @@ const BlogDetail = () => {
 
             <div className="flex flex-col lg:flex-row h-auto lg:h-screen w-full lg:overflow-hidden ">
                 
-                {/* ================= LEFT SIDE: ARTICLE ================= */}
+                {/* ================= LEFT SIDE ================= */}
                 <div className="flex-1 h-auto lg:h-full overflow-y-auto no-scrollbar p-6 md:p-10 lg:p-16">
                     
                     <button 
@@ -85,7 +89,7 @@ const BlogDetail = () => {
                                 </div>
                             </div>
 
-                            {/* Now uses the Stat component defined above */}
+                           
                             <div className="flex items-center gap-6 bg-zinc-50 px-4 py-2 rounded-lg">
                                 <Stat icon={<Eye size={18}/>} value={blog.viewsCount} label="Views" />
                                 <Stat icon={<Heart size={18}/>} value={blog.likesCount} label="Likes" />
@@ -109,7 +113,7 @@ const BlogDetail = () => {
                     </div>
                 </div>
 
-                {/* ================= RIGHT SIDE: COMMENTS ================= */}
+                {/* ================= RIGHT SIDE ================= */}
                 <div className="w-full lg:w-[400px] xl:w-[450px] h-auto lg:h-full bg-zinc-50 border-t lg:border-t-0 lg:border-l border-zinc-200 flex flex-col shrink-0">
                     
                     <div className="p-5 lg:p-6 border-b border-zinc-200 bg-white/50 backdrop-blur-md sticky top-0 z-10">

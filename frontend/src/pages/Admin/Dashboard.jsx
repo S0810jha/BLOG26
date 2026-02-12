@@ -30,7 +30,7 @@ const Dashboard = () => {
         <p className="text-zinc-500 text-sm font-medium mt-1">Platform overview and recent activity.</p>
       </div>
 
-      {/* Stats Cards Grid - Updated Layout */}
+      {/* Stats Cards Grid  */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
         {statsCards.map((stat, index) => (
           <div key={index} className="bg-white p-5 rounded-[2rem] border border-zinc-100 shadow-sm hover:shadow-md transition-all group">
@@ -48,7 +48,7 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Latest Blogs Section */}
+        {/* Latest Blogs */}
         <div className="lg:col-span-2 bg-white rounded-[2.5rem] border border-zinc-100 p-6 md:p-8 shadow-sm">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-xl font-black tracking-tight text-zinc-800 uppercase flex items-center gap-2">
@@ -76,7 +76,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Sidebar Content */}
+        {/* Sidebar */}
         <div className="space-y-6">
           {/* Status Card */}
           <div className="bg-zinc-900 rounded-[2.5rem] p-8 text-white relative overflow-hidden shadow-xl">
@@ -89,7 +89,7 @@ const Dashboard = () => {
               <ShieldCheck className="absolute -right-4 -bottom-4 text-white/5 w-32 h-32" />
           </div>
 
-          {/* Quick Actions Section */}
+          {/* Quick Actions */}
           <div className="bg-white rounded-[2.5rem] border border-zinc-100 p-6 shadow-sm">
             <h3 className="text-xs font-black uppercase tracking-widest text-zinc-400 mb-4 ml-2">Quick Actions</h3>
             <div className="grid grid-cols-2 gap-3">

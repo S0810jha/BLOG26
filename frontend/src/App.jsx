@@ -29,8 +29,6 @@ export function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // List of routes where we WANT to reset scroll to top
-    // We EXCLUDE "/blog-list" so it stays where it was
     const scrollResetingRoutes = ['/add-blog', '/user-login', '/admin-login'];
     
     if (scrollResetingRoutes.includes(pathname) || pathname === '/') {
@@ -49,6 +47,7 @@ const App = () => {
   const { token } = useContext(UserContext)
 
   const renderView = () => {
+
     // ADMIN VIEW
     if (aToken) {
       return (
@@ -90,7 +89,7 @@ const App = () => {
       )
     }
 
-    // AUTH VIEW (Default)
+    // AUTH VIEW 
     return (
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
@@ -103,7 +102,7 @@ const App = () => {
     )
   }
 
-  // 2. Wrap everything with ToastContainer
+
   return (
     <>
       <ToastContainer 

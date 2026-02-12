@@ -47,10 +47,9 @@ const AddBlog = () => {
         </p>
       </div>
 
-      {/* Changed to Flex layout for equal height columns */}
       <form onSubmit={handleSubmit} className="flex flex-col lg:flex-row gap-6 md:gap-8 items-stretch">
         
-        {/* Left Column - Main Content */}
+        {/* Left Column */}
         <div className="flex-1 lg:w-2/3 flex">
           <div className="bg-white/80 border border-zinc-200 p-5 md:p-8 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col w-full">
             <div className="mb-6">
@@ -71,7 +70,6 @@ const AddBlog = () => {
               <label className="flex items-center gap-2 text-[10px] font-black text-zinc-400 uppercase mb-2 ml-1 tracking-wider">
                 <FileText size={14} /> Content Body
               </label>
-              {/* Added flex-1 to textarea to fill the remaining height */}
               <textarea 
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
@@ -83,7 +81,7 @@ const AddBlog = () => {
           </div>
         </div>
 
-        {/* Right Column - Settings */}
+        {/* Right Column */}
         <div className="lg:w-1/3 flex">
           <div className="bg-white/80 border border-zinc-200 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-6 flex flex-col w-full justify-between">
             
@@ -152,7 +150,7 @@ const AddBlog = () => {
               </div>
             </div>
 
-            {/* Submit Button - Will always stay at the bottom of the card */}
+            {/* Submit */}
             <button disabled={isSubmitting} type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-[0.97] shadow-xl shadow-indigo-200 mt-auto">
               <Send size={18} />
               <span className="tracking-widest uppercase">{isSubmitting ? "Publishing..." : "Publish Post"}</span>

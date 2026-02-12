@@ -139,7 +139,7 @@ const UserBlogs = () => {
             {filteredBlogs.map((blog) => (
               <div key={blog._id} className="group bg-white border border-zinc-100 rounded-[3.5rem] overflow-hidden hover:shadow-3xl hover:shadow-emerald-200/20 transition-all duration-700 flex flex-col relative">
                 
-                {/* Category Badge */}
+                {/* Category */}
                 <div className="absolute top-8 left-8 z-10">
                   <span className="bg-white/80 backdrop-blur-xl text-zinc-900 text-[10px] font-black px-5 py-2.5 rounded-2xl uppercase tracking-[0.1em] shadow-lg border border-white/50">
                     {blog.category || 'General'}
@@ -206,7 +206,7 @@ const UserBlogs = () => {
             ))}
           </div>
 
-          {/* INFINITE SCROLL TRIGGER */}
+          {/* INFINITE SCROLL */}
           <div ref={observerTarget} className="w-full flex flex-col items-center justify-center mt-20 py-10">
             {loading && (
               <div className="flex flex-col items-center gap-4">

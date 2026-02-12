@@ -40,17 +40,18 @@ const AdminContextProvider = ({ children }) => {
         try {
             const { data } = await axios.get(`${backendUrl}/api/admin/get-all-blogs?page=${page}`, config)
             if (data.success) {
-                // If page 1, reset the list. If page > 1, append the data.
                 setAdminBlogs(prev => page === 1 ? data.blogs : [...prev, ...data.blogs])
                 setHasNextPage(data.hasNextPage)
                 setCurrentPage(data.currentPage)
             }
+
         } catch (error) {
             console.error("Admin fetch error", error)
         } finally {
             setLoading(false)
         }
     }, [aToken, loading])
+
 
     // GET BLOG BY ID
     const getBlogById = async (blogId) => {
@@ -68,10 +69,12 @@ const AdminContextProvider = ({ children }) => {
 
                 return data.blog
             }
+
         } catch (error) {
             toast.error(error.message)
         }
     }
+
 
     // ADD BLOG
     const addBlog = async (formData) => {
@@ -86,6 +89,7 @@ const AdminContextProvider = ({ children }) => {
             return false
         }
     }
+
 
     // UPDATE BLOG
     const updateBlog = async (formData) => {
@@ -104,6 +108,7 @@ const AdminContextProvider = ({ children }) => {
         }
     }
 
+
     // REMOVE BLOG
     const removeBlog = async (blogId) => {
         try {
@@ -115,6 +120,7 @@ const AdminContextProvider = ({ children }) => {
             toast.error(error.response?.data?.message || "Delete failed")
         }
     }
+    
 
     // DELETE COMMENT
     const deleteComment = async (blogId, commentId) => {

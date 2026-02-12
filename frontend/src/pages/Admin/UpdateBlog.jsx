@@ -80,7 +80,7 @@ const UpdateBlog = () => {
                 <h2 className="text-sm font-black uppercase tracking-[0.2em] text-zinc-900">
                     Edit <span className="text-indigo-600">Article</span>
                 </h2>
-                <div className="w-10"></div> {/* Spacer */}
+                <div className="w-10"></div> 
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-8">
@@ -147,7 +147,7 @@ const UpdateBlog = () => {
                     </div>
                 </div>
 
-                {/* Submit Button */}
+                {/* Submit */}
                 <button 
                     type="submit" 
                     disabled={isSubmitting}
