@@ -213,6 +213,7 @@ const updateBlog = async(req, res)=>{
 
             const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" })
             imageUrl = imageUpload.secure_url
+            fs.unlinkSync(imageFile.path)
         }
 
         const updatedData = {
@@ -224,7 +225,7 @@ const updateBlog = async(req, res)=>{
         }
 
         const updatedBlog = await blogModel.findByIdAndUpdate(blogId, updatedData, { new: true })
-        fs.unlinkSync(imageFile.path)
+        
 
         req.app.get("io").emit("blog-updated", updatedBlog)
 
