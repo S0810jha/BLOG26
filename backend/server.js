@@ -7,6 +7,9 @@ import connectDB from './config/db.js'
 import connectCloudinary from './config/cloudinary.js'
 import adminRouter from './routes/admin.route.js'
 import userRouter from './routes/user.route.js'
+import helmet from 'helmet'
+import compression from 'compression'
+import morgan from 'morgan'
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -28,6 +31,9 @@ connectDB()
 connectCloudinary()
 
 
+app.use(helmet())
+app.use(compression())
+app.use(morgan('common'))
 app.use(express.json())
 app.use(cors())
 

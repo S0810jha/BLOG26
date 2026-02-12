@@ -6,6 +6,7 @@ import userModel from '../models/user.model.js'
 import likeModel from '../models/likes.model.js'
 import viewModel from '../models/views.model.js'
 import commentModel from '../models/comments.model.js'
+import fs from 'fs'
 
 // ADMIN login
 const adminLogin = async(req, res)=>{
@@ -65,7 +66,9 @@ const addBlog = async(req, res)=>{
         const newBlog = new blogModel(blogData)
         await newBlog.save()
 
-        io.emit("new-blog-added", newBlog)
+        fs.unlinkSync(imageFile.path)
+
+        req.app.get("io").emit("new-blog-added", newBlog)
 
         res.status(201).json({ 
             success: true, 
@@ -139,7 +142,7 @@ const removeBlog = async(req, res)=>{
             blogModel.findByIdAndDelete(blogId)
         ])
 
-        io.emit("blog-removed", blogId)
+        req.app.get("io").emit("blog-removed", blogId)
 
         res.status(200).json({ 
             success: true, 
@@ -221,8 +224,9 @@ const updateBlog = async(req, res)=>{
         }
 
         const updatedBlog = await blogModel.findByIdAndUpdate(blogId, updatedData, { new: true })
+        fs.unlinkSync(imageFile.path)
 
-        io.emit("blog-updated", updatedBlog)
+        req.app.get("io").emit("blog-updated", updatedBlog)
 
         res.status(200).json({ 
             success: true, 
@@ -304,7 +308,7 @@ const deleteComment = async (req, res) => {
             commentsCount: currentCommentCount 
         })
 
-        io.emit("comment-deleted", { blogId, commentId, currentCommentCount })
+        req.app.get("io").emit("comment-deleted", { blogId, commentId, currentCommentCount })
 
         res.status(200).json({
             success: true,
