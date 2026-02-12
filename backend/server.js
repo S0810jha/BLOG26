@@ -16,12 +16,13 @@ const port = process.env.PORT || 8080;
 
 
 const httpServer = createServer(app);
-
+const allowedOrigin = "https://blog-26.vercel.app"
 
 const io = new Server(httpServer, {
     cors: {
-        origin: "https://blog-26.vercel.app", 
-        methods: ["GET", "POST"]
+        origin: allowedOrigin,
+        methods: ["GET", "POST"],
+        credentials: true
     }
 })
 
@@ -31,11 +32,15 @@ connectDB()
 connectCloudinary()
 
 
-app.use(helmet())
+app.use(helmet({contentSecurityPolicy: false}))
 app.use(compression())
 app.use(morgan('common'))
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: allowedOrigin,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}))
 
 
 io.on('connection', (socket) => {
