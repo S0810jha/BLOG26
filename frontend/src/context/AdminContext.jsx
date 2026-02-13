@@ -22,16 +22,15 @@ const AdminContextProvider = ({ children }) => {
 
 
     // GET DASHBOARD DATA
-    const getDashData = async () => {
+   const getDashData = useCallback(async () => {
         try {
             const { data } = await axios.get(backendUrl + "/api/admin/get-dashdata", config)
-            if (data.success)
-                setDashData(data)
-
+            if (data.success) setDashData(data)
         } catch (error) {
             toast.error(error.message)
         }
-    }
+    }, [backendUrl, config])
+
 
     // FETCH ALL BLOGS
     const getAllBlogs = useCallback(async (page = 1) => {
@@ -83,6 +82,9 @@ const AdminContextProvider = ({ children }) => {
             if (data.success) {
                 toast.success(data.message)
                 return true
+            }else{
+                toast.error(data.message)
+                return false
             }
         } catch (error) {
             toast.error(error.response?.data?.message || "Add blog failed")
@@ -160,7 +162,7 @@ const AdminContextProvider = ({ children }) => {
             socket.on("new-user-registered", () => {
                 setDashData(prev => {
                     if (!prev) return prev
-                    
+
                     return {
                         ...prev,
                         stats: {
