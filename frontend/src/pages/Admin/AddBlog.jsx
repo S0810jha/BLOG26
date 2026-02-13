@@ -62,7 +62,7 @@ const AddBlog = () => {
                 onChange={(e) => setTitle(e.target.value)}
                 className="w-full bg-zinc-50 border-2 border-zinc-100 rounded-2xl px-4 py-3 text-zinc-800 focus:outline-none focus:border-indigo-500 transition-all font-medium"
                 placeholder="Write Title Here.."
-                required
+                
               />
             </div>
 
@@ -75,7 +75,7 @@ const AddBlog = () => {
                 onChange={(e) => setContent(e.target.value)}
                 className="w-full flex-1 bg-zinc-50 border-2 border-zinc-100 rounded-2xl px-4 py-3 text-zinc-800 focus:outline-none focus:border-indigo-500 transition-all resize-none font-medium min-h-75"
                 placeholder="Start writing your blog content..."
-                required
+                
               ></textarea>
             </div>
           </div>
@@ -110,7 +110,7 @@ const AddBlog = () => {
                       </div>
                     )}
                   </div>
-                  <input onChange={(e) => setImage(e.target.files[0])} type="file" id="blog-img" accept="image/*" hidden required />
+                  <input onChange={(e) => setImage(e.target.files[0])} type="file" id="blog-img" accept="image/*" hidden />
                 </label>
               </div>
 
@@ -144,7 +144,7 @@ const AddBlog = () => {
                     onChange={(e) => setAuthor(e.target.value)}
                     className="w-full bg-zinc-50 border-2 border-zinc-100 rounded-xl px-4 py-3 text-sm text-zinc-800 focus:outline-none focus:border-indigo-500 transition-all font-semibold"
                     placeholder="e.g. Shubham Jhan"
-                    required
+                    
                   />
                 </div>
               </div>
