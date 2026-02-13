@@ -177,7 +177,15 @@ const UserContextProvider = ({ children }) => {
                 setActiveBlog(curr => curr?._id === blogId ? null : curr);
             });
 
-            return () => newSocket.close()
+            return ()=>{
+                newSocket.off("update-likes")
+                newSocket.off("update-views")
+                newSocket.off("new-comment")
+                newSocket.off("comment-deleted")
+                newSocket.off("new-blog-added")
+                newSocket.off("blog-removed")
+                newSocket.disconnect()
+            }
         }
     }, [token, backendUrl])
 

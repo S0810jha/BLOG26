@@ -46,6 +46,12 @@ const registerUser = async(req, res)=>{
         const newUser = new userModel({ name, email, password: hashedPassword, role: "user" })
         const user = await newUser.save()
 
+        req.app.get("io").emit("new-user-registered", {
+            userId: user._id,
+            name: user.name,
+            role: user.role
+        })
+
         const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET);
         res.status(200).json({ 
             success: true, 

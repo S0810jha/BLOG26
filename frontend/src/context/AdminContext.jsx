@@ -157,6 +157,20 @@ const AdminContextProvider = ({ children }) => {
                 ))
             }
 
+            socket.on("new-user-registered", () => {
+                setDashData(prev => {
+                    if (!prev) return prev
+                    
+                    return {
+                        ...prev,
+                        stats: {
+                            ...prev.stats,
+                            totalUsers: (prev.stats.totalUsers || 0) + 1
+                        }
+                    }
+                })
+            })
+
             socket.on("update-likes", ({ blogId, likesCount }) => {
                 updateBlogStat(blogId, { likesCount })
                 getDashData()
@@ -189,7 +203,17 @@ const AdminContextProvider = ({ children }) => {
                 setAdminBlogs(prev => prev.map(b => b._id === updatedBlog._id ? updatedBlog : b))
             })
 
-            return () => socket.disconnect()
+            return () => {
+                socket.off("new-user-registered")
+                socket.off("update-likes")
+                socket.off("update-views")
+                socket.off("new-comment")
+                socket.off("comment-deleted")
+                socket.off("new-blog-added")
+                socket.off("blog-removed")
+                socket.off("blog-updated")
+                socket.disconnect()
+            }
 
         }
 
